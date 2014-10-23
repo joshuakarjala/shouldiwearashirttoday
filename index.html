@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+</head>
+<body>
+    <h1>Should I wear a shirt to work today?</h1>
+    <h2 id="answer"></h2>
+    <h3>It's only <span id="temp"></span>&deg;C in <span id="location"></span></h3>
+</body>
+<script>
+
+$(function() {
+    var kelvinToCelsius = function(kelvin) {
+        return kelvin - 273.15;
+    };
+
+    var renderWeather = function(weather) {
+        var temp = kelvinToCelsius(weather.main.temp);
+        var answer = 'Yes';
+
+        if(temp >= 25) {
+            answer = 'No';
+        }
+
+        $('#answer').html(answer);
+        $('#location').html(weather.name + ', ' + weather.sys.country);
+        $('#temp').html(temp.toFixed(2));
+    };
+
+    var weatherForPosition = function(position) {
+        $.ajax({
+            url: 'http://api.openweathermap.org/data/2.5/weather',
+            data: {
+                lat: position.coords.latitude,
+                lon: position.coords.longitude
+            },
+            success: renderWeather,
+            dataType: 'json'
+        });
+    };
+
+    var error = function(err) {
+        console.log(err);
+    };
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(weatherForPosition, error);
+    }
+    else {
+        error('not supported');
+    }
+});
+
+</script>
+</html>
