@@ -3,11 +3,59 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+
+    <style type="text/css" media="screen">
+        body {
+            background:#334d8e url(/shirt.png) no-repeat center center;
+        }
+
+        .question {
+            color:#fff;
+            font-family:Georgia;
+            font-size:39px;
+            font-style:italic;
+            line-height:0.492;
+            text-align:center;
+            top:50%;
+        }
+
+        .breaker {
+            background:#fff;
+            height:1px;
+            margin:50px auto;
+            width:190px;
+        }
+
+        .answer {
+            padding: 0px;
+            margin: 0px;
+            color:#fff;
+            font-family:Georgia;
+            font-size:139px;
+            font-style:italic;
+            font-weight:700;
+            line-height:96px;
+            text-align:center;
+        }
+
+        .centered {
+            height:520px;
+            left:50%;
+            position:fixed;
+            top:50%;
+            transform:translate(-50%,-50%);
+            width:750px;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Should I wear a shirt to work today?</h1>
-    <h2 id="answer"></h2>
-    <h3>It's only <span id="temp"></span>&deg;C in <span id="location"></span></h3>
+    <div class="centered">
+        <h1 class="question">Should I wear a shirt to work today?</h1>
+        <div class="breaker"></div>
+        <h2 class="answer" id="answer"></h2>
+        <h3>It's only <span id="temp"></span>&deg;C in <span id="location"></span></h3>
+    </div>
 </body>
 <script>
 
@@ -18,10 +66,10 @@ $(function() {
 
     var renderWeather = function(weather) {
         var temp = kelvinToCelsius(weather.main.temp);
-        var answer = 'Yes';
+        var answer = 'YES';
 
         if(temp >= 25) {
-            answer = 'No';
+            answer = 'NO';
         }
 
         $('#answer').html(answer);
