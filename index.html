@@ -1,6 +1,19 @@
 <html>
 <head>
+    <title>Should I wear a shirt - Founders A/S</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="description" content="Tired of deciding wether or not to put on a shirt?" />
+
+    <meta property="og:title" content="Should I wear a shirt today?" />
+    <meta property="og:image" content="http://shouldiwearashirt.com/shirt.png" />
+    <meta property="og:url" content="http://shouldiwearashirt.com/" />
+    <meta property="og:description" content="Tired of deciding wether or not to put on a shirt?" />
+
+    <script type="text/javascript">
+      window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+      window.analytics.load("cXj7REIy3F");
+      window.analytics.page();
+    </script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 
@@ -56,6 +69,20 @@
             background-position: center center;
         }
 
+        .bottom-right {
+            position:absolute;
+            bottom:0;
+            right:0;
+            padding: 50px;
+            font-style: italic;
+            color: #0b2159;
+        }
+
+        a {
+            color: #0b2159;
+            text-decoration: none; /* no underline */
+        }
+
     </style>
 </head>
 <body>
@@ -63,7 +90,12 @@
         <h1 class="question">Should I wear a shirt to work today?</h1>
         <div class="breaker"></div>
         <h2 class="answer" id="answer"></h2>
-        <h3 class="temperature">It's only <span id="temp"></span>&deg;C in <span id="location"></span></h3>
+        <h3 class="temperature">It's <span id="over-under">only</span> <span id="temp"></span>&deg;C in <span id="location"></span></h3>
+    </div>
+    <div class="bottom-right">
+        See more about Founders at <a href="http://founders.as" title="Founders A/S" alt="Founders A/S">http://founders.as</a>
+        <br>
+        By <a href="http://twitter.com/joshuakarjala" title="@joshuakarjala" alt="@joshuakarjala">@joshuakarjala</a> & <a href="http://twitter.com/stockmarr" title="@stockmarr" alt="@stockmarr">@stockmarr</a>
     </div>
 </body>
 <script>
@@ -79,6 +111,7 @@ $(function() {
 
         if(temp >= 25) {
             answer = 'NO';
+            $('#over-under').html('over');
         }
 
         $('#answer').html(answer);
