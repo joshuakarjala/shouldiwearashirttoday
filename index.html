@@ -6,7 +6,7 @@
 
     <style type="text/css" media="screen">
         body {
-            background:#334d8e url(/shirt.png) no-repeat center center;
+            background:#334d8e;
         }
 
         .question {
@@ -16,7 +16,7 @@
             font-style:italic;
             line-height:0.492;
             text-align:center;
-            top:50%;
+            margin-top: 130px;
         }
 
         .breaker {
@@ -29,22 +29,31 @@
         .answer {
             padding: 0px;
             margin: 0px;
-            color:#fff;
-            font-family:Georgia;
-            font-size:139px;
-            font-style:italic;
-            font-weight:700;
-            line-height:96px;
-            text-align:center;
+            color: #fff;
+            font-family: Georgia;
+            font-size: 139px;
+            font-style: italic;
+            font-weight: 700;
+            line-height: 96px;
+            text-align: center;
+        }
+
+        .temperature {
+            color: #fff;
+            margin: 40px 0;
+            text-align: center;
+            font-style: italic;
+            text-transform: uppercase;
+            display: none;
         }
 
         .centered {
-            height:520px;
-            left:50%;
-            position:fixed;
-            top:50%;
-            transform:translate(-50%,-50%);
-            width:750px;
+            height: 611px;
+            margin: auto;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background:#334d8e url(/shirt.png) no-repeat;
+            background-position: center center;
         }
 
     </style>
@@ -54,7 +63,7 @@
         <h1 class="question">Should I wear a shirt to work today?</h1>
         <div class="breaker"></div>
         <h2 class="answer" id="answer"></h2>
-        <h3>It's only <span id="temp"></span>&deg;C in <span id="location"></span></h3>
+        <h3 class="temperature">It's only <span id="temp"></span>&deg;C in <span id="location"></span></h3>
     </div>
 </body>
 <script>
@@ -74,7 +83,8 @@ $(function() {
 
         $('#answer').html(answer);
         $('#location').html(weather.name + ', ' + weather.sys.country);
-        $('#temp').html(temp.toFixed(2));
+        $('#temp').html(Math.round(temp));
+        $('.temperature').show();
     };
 
     var weatherForPosition = function(position) {
