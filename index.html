@@ -134,15 +134,14 @@ $(function() {
         });
     };
 
-    var error = function(err) {
-        console.log(err);
-    };
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(weatherForPosition, error);
+    try{
+        navigator.geolocation.getCurrentPosition(weatherForPosition, function(err) {
+            console.log(err);
+        }, {});
     }
-    else {
-        error('not supported');
+    catch(evt)
+    {
+        alert(evt.message);
     }
 });
 
